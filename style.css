@@ -25,6 +25,7 @@ body {
     min-height: 100vh;
     font-family: "Bricolage Grotesque";
     font-weight: 400;
+    gap: 3rem
 }
 
 .container {
@@ -130,4 +131,15 @@ body {
     outline: 1.5px solid var(--ink);
 }
 
+.restart-btn {
+    padding: 10px 26px;
+    background-color: var(--accent);
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 0.7rem;
+}
+.restart-btn:hover {
+    background-color: #e89d10;
+}
 
