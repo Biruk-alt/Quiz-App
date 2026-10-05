@@ -2,7 +2,8 @@
 const questionContainer = document.querySelector(`.question-container`);
 const nextQuestionBtn = document.querySelector(`.next-question`);
 const questionNumDiv = document.querySelector(`.question-num-and-score`);
-const restartBtn =document.querySelector(`.restart-btn`)
+const restartBtn =document.querySelector(`.restart-btn`);
+const progressBar =document.querySelector(`.progress-bar `);
 
 
 //make questions array with questions, choices, and correct answer
@@ -58,11 +59,14 @@ renderQuestionNum();
 
 //handling the restart button
 restartBtn.addEventListener(`click`, function(e) {
-  questionNumber = 1;
   questionContainer.innerHTML = "";
   answered = false;
   questionNum = 1;
+  questionNumber = 1;
   score = 0;
+  questionNumDiv.innerHTML = "";
+  renderScore();
+  renderProgressBar();
   renderQuestionNum();
     const html = `
           <h1 class="question">${questions[questionNumber - 1].question}</h1>
@@ -98,7 +102,9 @@ nextQuestionBtn.addEventListener(`click`, function(e) {
   questionNum++;
   if(questionNumber > questions.length) {
     questionContainer.innerHTML = `your score is ${score}/5`
+    questionNumDiv.innerHTML = "Finished"
   };
+  renderProgressBar();
   renderQuestion();
   if(questionNum > questions.length) {
     questionNum = 1;
@@ -109,6 +115,14 @@ nextQuestionBtn.addEventListener(`click`, function(e) {
   renderQuestionNum();
   answered = false
 })
+
+//handling the progress bar
+const renderProgressBar = function() {
+  if(questionNumber > questions.length) return;
+  progressBar.style.width = `${(questionNumber / questions.length) * 100}%`
+}
+
+renderProgressBar();
 
 
 
